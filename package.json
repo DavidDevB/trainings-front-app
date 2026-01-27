@@ -1,5 +1,5 @@
 {
-  "name": "trainings-fron-app",
+  "name": "trainings-front-app",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -7,7 +7,7 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "serve:ssr:trainings-fron-app": "node dist/trainings-fron-app/server/server.mjs"
+    "serve:ssr:trainings-front-app": "node dist/trainings-front-app/server/server.mjs"
   },
   "prettier": {
     "printWidth": 100,
