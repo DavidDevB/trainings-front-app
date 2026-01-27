@@ -1,0 +1,26 @@
+<div>
+    <button (click)="displayTrainings()">Formations</button>
+    @if (listTrainings) {
+        <ng-container >
+            <table>
+                <tr>
+                    <th>ID</th><th>NOM</th><th>DESCRIPTION</th><th>PRIX</th>
+                </tr>
+                <tr>
+                @for (training of listTrainings; track training.id) {
+                        <td>{{training.id}}</td>
+                        <td>{{training.name}}</td>
+                        <td>{{training.description}}</td>
+                        <td>{{training.price}}</td>
+                        <td><input type="number" name="quantity" style="width: 60px" [value]="training.quantity" (input)="training.quantity = $event.target.valueAsNumber"/></td>
+                <td></td>
+                }
+                
+                </tr>
+                <tr>
+                </tr>
+            </table>
+    </ng-container>
+    }
+    
+</div>
