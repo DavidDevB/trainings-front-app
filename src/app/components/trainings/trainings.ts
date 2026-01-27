@@ -23,4 +23,8 @@ export class TrainingComponent implements OnInit {
       { id: 3, name: 'Python', description: 'Formation Python/Django 5 jours', price: 1500, quantity: 1 },
     ];
   }
+
+  onAddToCart(training: Training) {
+    console.log(`Ajout au panier de la formation ${training.name} en quantité ${training.quantity}`);
+  }
 }
