@@ -1,9 +1,11 @@
 
-<ng-container>
-    @if (cartService.getCartContent().length === 0 && cartService.showCart) {
-            <div class="d-flex align-items-center justify-content-center">Le panier est vide</div>
-        } @else if (cartService.getCartContent().length > 0 && cartService.showCart) {
-            <ng-container>
+
+@if (cartService.getCartContent().length === 0 && cartService.showCart) {
+        <ng-container>
+            <p>Le panier est vide</p>
+        </ng-container>
+    } @else if (cartService.getCartContent().length > 0 && cartService.showCart) {
+        <ng-container>
                 <h3>Contenu du panier</h3>
                 <table class="table table-striped table-hover">
                     @for (item of cartService.getCartContent(); track item.id) {
@@ -16,9 +18,8 @@
                         </tr>
                     }
                 </table>
-            </ng-container>
-            <div>
-                <strong>Total : {{cartService.getTotalPrice()}} €</strong>
-            </div>
-        }
-</ng-container>
+        </ng-container>
+        <div>
+            <strong>Total : {{cartService.getTotalPrice()}} €</strong>
+        </div>
+    }
