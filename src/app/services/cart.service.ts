@@ -18,7 +18,13 @@ export class CartService {
   }
 
   addToCart(training: Training) {
+    const existingTraining = this.trainingsInCart.find(t => t.id === training.id);
+    if (existingTraining) {
+      existingTraining.quantity! += training.quantity!;
+      return;
+    } else {
     this.trainingsInCart.push(training);
+    }
   }
 
   getCartContent(): Training[] {
@@ -29,8 +35,14 @@ export class CartService {
     return this.trainingsInCart.reduce((total, training) => total + (training.price * training.quantity), 0);
   }
 
-  removeFromCart(trainingId: number) {
-    this.trainingsInCart = this.trainingsInCart.filter(training => training.id !== trainingId);
+  removeFromCart(id: number) {
+  const index = this.trainingsInCart.findIndex(item => item.id === id);
+  if (index !== -1) {
+    this.trainingsInCart[index].quantity!--;
+    if (this.trainingsInCart[index].quantity === 0) {
+      this.trainingsInCart.splice(index, 1);
+    }
   }
+}
 
 }

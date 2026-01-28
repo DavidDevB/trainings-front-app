@@ -1,7 +1,7 @@
 <div>
     <div>
-        <button (click)="displayTrainings(); cartService.showCart = false">Formations</button>
-        <button (click)="cartService.displayTrainingsInCart()">Panier ({{cartService.getCartContent().length}})</button>
+        <button class="btn btn-secondary" (click)="displayTrainings(); cartService.showCart = false">Formations</button>
+        <button class="btn btn-secondary" (click)="cartService.displayTrainingsInCart()">Panier ({{cartService.getCartContent().length}})</button>
     </div>
     
     @if (listTrainings && !cartService.showCart) {
