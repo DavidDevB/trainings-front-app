@@ -12,10 +12,11 @@ import { Router } from '@angular/router';
 })
 export class TrainingComponent implements OnInit {
   listTrainings : Training[] | undefined;
-  constructor(public cartService: CartService, private router: Router) {}
+  constructor(public cartService: CartService) {}
 
   ngOnInit(): void {
-    
+    this.displayTrainings();
+    this.cartService.showCart = false;
   }
 
   displayTrainings() {

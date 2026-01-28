@@ -13,10 +13,6 @@ export class CartService {
 
   }
 
-  displayTrainingsInCart(): void {
-    this.showCart = true;
-  }
-
   addToCart(training: Training) {
     const existingTraining = this.trainingsInCart.find(t => t.id === training.id);
     if (existingTraining) {

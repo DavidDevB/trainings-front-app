@@ -1,11 +1,23 @@
 import { Component } from '@angular/core';
+import { CartService } from '../../services/cart.service';
+import { FormsModule } from '@angular/forms';
+import { OnInit } from '@angular/core';
+import { TrainingComponent } from '../trainings/trainings.component';
 
 @Component({
   selector: 'app-cart',
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.css',
 })
-export class Cart {
+export class CartComponent implements OnInit {
+
+  constructor(public cartService: CartService) {}
+
+  ngOnInit(): void {
+      this.cartService.showCart = true;
+      console.log('CartComponent initialized, showCart set to', this.cartService.showCart);
+  }
+
 
 }
