@@ -1,16 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { Training } from '../../models/training.model';
-import { RouterOutlet, RouterLink } from '@angular/router';
+import { CartService } from '../../services/cart.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-trainings',
   imports: [],
-  templateUrl: './trainings.html',
-  styleUrl: './trainings.css',
+  templateUrl: './trainings.component.html',
+  styleUrl: './trainings.component.css',
 })
 export class TrainingComponent implements OnInit {
   listTrainings : Training[] | undefined;
-  constructor() {}
+  constructor(public cartService: CartService, private router: Router) {}
 
   ngOnInit(): void {
     
@@ -25,6 +26,7 @@ export class TrainingComponent implements OnInit {
   }
 
   onAddToCart(training: Training) {
-    console.log(`Ajout au panier de la formation ${training.name} en quantité ${training.quantity}`);
+    this.cartService.addToCart(training);
+    this.router.navigateByUrl('cart');
   }
 }

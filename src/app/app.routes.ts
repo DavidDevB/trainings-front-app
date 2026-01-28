@@ -1,11 +1,12 @@
 import { Routes } from '@angular/router';
-import { TrainingComponent } from './components/trainings/trainings';
+import { TrainingComponent } from './components/trainings/trainings.component';
+import { App } from './app';
 
 export const routes: Routes = [
     {
         path: '',
-        redirectTo: '/trainings',
-        pathMatch: 'full' 
+        redirectTo: 'trainings',
+        pathMatch: 'full'
     },
    
     { path: 'trainings', 
