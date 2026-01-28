@@ -20,7 +20,7 @@ export class CartService {
   addToCart(training: Training) {
     const existingTraining = this.trainingsInCart.find(t => t.id === training.id);
     if (existingTraining) {
-      existingTraining.quantity! += training.quantity!;
+      existingTraining.quantity!++;
       return;
     } else {
     this.trainingsInCart.push(training);
