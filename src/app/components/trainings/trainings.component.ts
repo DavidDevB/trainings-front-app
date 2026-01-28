@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { Training } from '../../models/training.model';
 import { CartService } from '../../services/cart.service';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-trainings',
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './trainings.component.html',
   styleUrl: './trainings.component.css',
 })
@@ -26,7 +27,20 @@ export class TrainingComponent implements OnInit {
   }
 
   onAddToCart(training: Training) {
-    this.cartService.addToCart(training);
-    this.router.navigateByUrl('cart');
+    if (training.quantity < 1) {
+      alert('La quantité doit être au moins 1');
+      training.quantity = 1;
+      return;
+    }
+
+    const trainingToAdd = { 
+    ...training, 
+    quantity: training.quantity 
+  };
+  
+    this.cartService.addToCart(trainingToAdd);
+  
+    training.quantity = 1;
+    
   }
 }

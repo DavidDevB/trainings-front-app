@@ -19,7 +19,7 @@
                         <td>{{training.name}}</td>
                         <td>{{training.description}}</td>
                         <td>{{training.price}}</td>
-                        <td><input type="number" name="quantity" style="width: 60px" [value]="training.quantity" (input)="training.quantity = $event.target.valueAsNumber"/></td>
+                        <td><input type="number" name="quantity" style="width: 60px" [(ngModel)]="training.quantity"/></td>
                         <td><a class="btn btn-primary" (click)="onAddToCart(training)">Add to Cart</a></td>
                     </tr>
                 }
@@ -37,7 +37,7 @@
                     <tr>
                         <td>{{item.id}}</td>
                         <td>{{item.name}}</td>
-                        <td>{{item.price}} €</td>
+                        <td>{{item.price * item.quantity}} €</td>
                         <td>Quantité : {{item.quantity}}</td>
                         <td><a class="btn btn-danger" (click)="cartService.removeFromCart(item.id)">Remove</a></td>
                     </tr>
