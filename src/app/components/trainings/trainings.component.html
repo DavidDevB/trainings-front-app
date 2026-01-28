@@ -1,10 +1,10 @@
 <div>
     <div>
-        <button (click)="displayTrainings()">Formations</button>
-        <button (click)="cartService.getCartContent()">Panier ({{cartService.getCartContent().length}})</button>
+        <button (click)="displayTrainings(); cartService.showCart = false">Formations</button>
+        <button (click)="cartService.displayTrainingsInCart()">Panier ({{cartService.getCartContent().length}})</button>
     </div>
     
-    @if (listTrainings) {
+    @if (listTrainings && !cartService.showCart) {
         <ng-container >
             <table class="table table-striped table-hover">
                 <thead>
@@ -27,17 +27,23 @@
             </table>
     </ng-container>
     }
-    @if (cartService.getCartContent().length === 0) {
+    @if (cartService.getCartContent().length === 0 && cartService.showCart) {
         <div>Le panier est vide</div>
-    } @else if (cartService.getCartContent().length > 0) {
-        <div>
+    } @else if (cartService.getCartContent().length > 0 && cartService.showCart) {
+        <ng-container>
             <h3>Contenu du panier</h3>
-            <ul>
+            <table class="table table-striped table-hover">
                 @for (item of cartService.getCartContent(); track item.id) {
-                    <li>{{item.name}} - Quantité : {{item.quantity}} - Prix unitaire : {{item.price}} €</li>
+                    <tr>
+                        <td>{{item.id}}</td>
+                        <td>{{item.name}}</td>
+                        <td>{{item.price}} €</td>
+                        <td>Quantité : {{item.quantity}}</td>
+                        <td><a class="btn btn-danger" (click)="cartService.removeFromCart(item.id)">Remove</a></td>
+                    </tr>
                 }
-            </ul>
-        </div>
+            </table>
+        </ng-container>
         <div>
             <strong>Total : {{cartService.getTotalPrice()}} €</strong>
         </div>
