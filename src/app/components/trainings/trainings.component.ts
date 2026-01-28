@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Training } from '../../models/training.model';
 import { CartService } from '../../services/cart.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-trainings',
