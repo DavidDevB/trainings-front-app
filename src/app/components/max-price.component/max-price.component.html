@@ -1,0 +1,12 @@
+
+<ng-container>
+    <div class="max-price-bar d-flex justify-content-center mb-3">
+        <input
+        type="number"
+        placeholder="Max Price..."
+        [(ngModel)]="maxPrice"
+        (ngModelChange)="onPriceInput($event)"
+        />
+        <button class="btn btn-secondary shadow" (click)="clearMaxPrice()">Clear</button>
+    </div>
+</ng-container>

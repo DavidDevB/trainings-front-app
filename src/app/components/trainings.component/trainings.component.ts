@@ -3,17 +3,17 @@ import { FormsModule } from '@angular/forms';
 import { Training } from '../../models/training.model';
 import { CartService } from '../../services/cart.service';
 import { SearchbarComponent } from '../searchbar.component/searchbar.component';
+import { MaxPriceComponent } from "../max-price.component/max-price.component";
 
 @Component({
   selector: 'app-trainings',
-  imports: [FormsModule, SearchbarComponent],
+  imports: [FormsModule, SearchbarComponent, MaxPriceComponent],
   templateUrl: './trainings.component.html',
   styleUrl: './trainings.component.css',
 })
 export class TrainingComponent implements OnInit {
   listTrainings : Training[] | undefined;
   allTrainings: Training[] = [];
-  searchBarComponent = SearchbarComponent;
   constructor(public cartService: CartService) {}
 
   ngOnInit(): void {
@@ -63,21 +63,31 @@ export class TrainingComponent implements OnInit {
     }
   }
   
-isSortedAsc: boolean = true;
+  isSortedAsc: boolean = true;
 
-orderByCategory(): void {
-  if (!this.listTrainings) return;
+  orderByCategory(): void {
+    if (!this.listTrainings) return;
 
-  if (this.isSortedAsc) {
-    this.listTrainings = [...this.listTrainings].sort((a, b) => 
-      b.category.localeCompare(a.category)
-    );
-  } else {
-    this.listTrainings = [...this.listTrainings].sort((a, b) => 
-      a.category.localeCompare(b.category)
-    );
+    if (this.isSortedAsc) {
+      this.listTrainings = [...this.listTrainings].sort((a, b) => 
+        b.category.localeCompare(a.category)
+      );
+    } else {
+      this.listTrainings = [...this.listTrainings].sort((a, b) => 
+        a.category.localeCompare(b.category)
+      );
+    }
+
+    this.isSortedAsc = !this.isSortedAsc;
   }
 
-  this.isSortedAsc = !this.isSortedAsc;
-}
+  onMaxPriceChange(maxPrice: number): void {
+    if (maxPrice <= 0) {
+      this.listTrainings = [...this.allTrainings];
+    } else {
+      this.listTrainings = this.allTrainings.filter(training =>
+        training.price <= maxPrice
+      );
+    }
+  }
 }
