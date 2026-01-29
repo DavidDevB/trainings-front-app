@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Training } from '../../models/training.model';
 
 @Component({
   selector: 'app-searchbar',
@@ -23,13 +22,6 @@ export class SearchbarComponent {
   clearSearch(): void {
     this.searchQuery = '';
     this.searchChange.emit(this.searchQuery);
-  }
-
-  filterTrainings(trainings: Training[], query: string): Training[] {
-    return trainings.filter(training =>
-      training.name.toLowerCase().includes(query.toLowerCase()) ||
-      training.description.toLowerCase().includes(query.toLowerCase())
-    ) || [];
   }
 
 }
