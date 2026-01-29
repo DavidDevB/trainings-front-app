@@ -1,8 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { TrainingComponent } from '../trainings.component/trainings.component';
 import { Training } from '../../models/training.model';
-import { CartService } from '../../services/cart.service';
 
 @Component({
   selector: 'app-searchbar',

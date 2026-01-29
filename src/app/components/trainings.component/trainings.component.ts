@@ -23,9 +23,13 @@ export class TrainingComponent implements OnInit {
 
   displayTrainings() {
     this.allTrainings = [
-      { id: 1, name: 'Java', description: 'Formation Java SE 9 sur 5 jours', price: 1500, quantity: 1 },
-      { id: 2, name: 'DotNet', description: 'Formation DotNet 3 jours', price: 1000, quantity: 1 },
-      { id: 3, name: 'Python', description: 'Formation Python/Django 5 jours', price: 1500, quantity: 1 },
+      { id: 1, name: 'Java', category: 'Backend', description: 'Formation Java SE 9 sur 5 jours', price: 1500, quantity: 1 },
+      { id: 2, name: 'DotNet', category: 'Programming', description: 'Formation DotNet 3 jours', price: 1000, quantity: 1 },
+      { id: 3, name: 'Python', category: 'Backend', description: 'Formation Python/Django 5 jours', price: 1500, quantity: 1 },
+      { id: 4, name: 'Angular', category: 'Frontend', description: 'Formation Angular 4 jours', price: 1200, quantity: 1 },
+      { id: 5, name: 'React', category: 'Frontend', description: 'Formation React 4 jours', price: 1200, quantity: 1 },
+      { id: 6, name: 'Vue.js', category: 'Frontend', description: 'Formation Vue.js 4 jours', price: 1200, quantity: 1 },
+      { id: 7, name: 'Node.js', category: 'Web Development', description: 'Formation Node.js 5 jours', price: 1500, quantity: 1 },
     ];
     this.listTrainings = [...this.allTrainings];
   }
