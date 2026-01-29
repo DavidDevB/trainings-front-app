@@ -1,5 +1,5 @@
 import { Component, signal } from '@angular/core';
-import { RouterOutlet, RouterLink, Router} from '@angular/router';
+import { RouterOutlet, RouterLink} from '@angular/router';
 import { CartService } from './services/cart.service';
 
 @Component({
@@ -11,10 +11,7 @@ import { CartService } from './services/cart.service';
 export class App {
   protected readonly title = signal('trainings-front-app');
 
-  constructor(public cartService: CartService, private router: Router) {}
+  constructor(public cartService: CartService) {}
 
-  get currentRoute(): string {
-    return this.router.url;
-  }
 
 }

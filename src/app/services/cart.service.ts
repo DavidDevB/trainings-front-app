@@ -17,14 +17,15 @@ export class CartService {
     const existingTraining = this.trainingsInCart.find(t => t.id === training.id);
     if (existingTraining) {
       existingTraining.quantity += training.quantity;
-      return;
+      localStorage.setItem('cart', JSON.stringify(this.trainingsInCart));
     } else {
     this.trainingsInCart.push({...training});
+    localStorage.setItem('cart', JSON.stringify(this.trainingsInCart));
     }
   }
 
   getCartContent(): Training[] {
-    return this.trainingsInCart
+    return localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')!) : [];
   }
 
   getTotalPrice(): number {
@@ -32,13 +33,15 @@ export class CartService {
   }
 
   removeFromCart(id: number) {
-  const index = this.trainingsInCart.findIndex(item => item.id === id);
-  if (index !== -1) {
-    this.trainingsInCart[index].quantity!--;
-    if (this.trainingsInCart[index].quantity === 0) {
-      this.trainingsInCart.splice(index, 1);
+    const index = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')!).findIndex((item: Training) => item.id === id) : -1;
+    if (index !== -1) {
+      this.trainingsInCart[index].quantity!--;
+      localStorage.setItem('cart', JSON.stringify(this.trainingsInCart));
+      if (JSON.parse(localStorage.getItem('cart')!)[index].quantity === 0) {
+        this.trainingsInCart.splice(index, 1);
+        localStorage.setItem('cart', JSON.stringify(this.trainingsInCart));
+      }
     }
   }
-}
 
 }
