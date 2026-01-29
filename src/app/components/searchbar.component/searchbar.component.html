@@ -1,0 +1,13 @@
+
+
+<ng-container >
+  <div class="search-bar">
+    <input
+      type="text"
+      placeholder="Search..."
+      [(ngModel)]="searchQuery"
+      (input)="onSearchInput()"
+    />
+    <button class="btn btn-secondary shadow" (click)="clearSearch()">Clear</button>
+  </div>
+</ng-container>
