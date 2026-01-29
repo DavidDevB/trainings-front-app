@@ -1,12 +1,12 @@
 
 
 <ng-container >
-  <div class="search-bar">
+  <div class="search-bar d-flex justify-content-center mb-3">
     <input
       type="text"
       placeholder="Search..."
       [(ngModel)]="searchQuery"
-      (input)="onSearchInput()"
+      (ngModelChange)="onSearchInput($event)"
     />
     <button class="btn btn-secondary shadow" (click)="clearSearch()">Clear</button>
   </div>

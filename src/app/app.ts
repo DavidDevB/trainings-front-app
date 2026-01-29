@@ -1,11 +1,10 @@
 import { Component, signal } from '@angular/core';
 import { RouterOutlet, RouterLink, Router} from '@angular/router';
 import { CartService } from './services/cart.service';
-import {SearchbarComponent } from './components/searchbar.component/searchbar.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, RouterLink, SearchbarComponent],
+  imports: [RouterOutlet, RouterLink],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
@@ -17,6 +16,5 @@ export class App {
   get currentRoute(): string {
     return this.router.url;
   }
-
 
 }

@@ -6,9 +6,6 @@
       <button class="btn btn-secondary shadow" routerLink="/trainings" >Formations</button>
       <button class="btn btn-secondary shadow" routerLink="/cart" >Panier</button>
       <button class="btn btn-secondary shadow" routerLink="/form" >Formulaire d'envoi</button>
-      @if (currentRoute === '/trainings') {
-        <app-searchbar></app-searchbar>
-      }
   </div>
   <div class="w-100 d-flex justify-content-center">
     <router-outlet></router-outlet>
