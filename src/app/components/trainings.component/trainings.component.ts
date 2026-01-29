@@ -63,4 +63,21 @@ export class TrainingComponent implements OnInit {
     }
   }
   
+isSortedAsc: boolean = true;
+
+orderByCategory(): void {
+  if (!this.listTrainings) return;
+
+  if (this.isSortedAsc) {
+    this.listTrainings = [...this.listTrainings].sort((a, b) => 
+      b.category.localeCompare(a.category)
+    );
+  } else {
+    this.listTrainings = [...this.listTrainings].sort((a, b) => 
+      a.category.localeCompare(b.category)
+    );
+  }
+
+  this.isSortedAsc = !this.isSortedAsc;
+}
 }
