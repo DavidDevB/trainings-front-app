@@ -14,6 +14,8 @@ import { MaxPriceComponent } from "../max-price.component/max-price.component";
 export class TrainingComponent implements OnInit {
   listTrainings : Training[] | undefined;
   allTrainings: Training[] = [];
+  maxPrice: number = 0;
+  searchQuery: string = '';
   constructor(public cartService: CartService) {}
 
   ngOnInit(): void {
@@ -53,14 +55,8 @@ export class TrainingComponent implements OnInit {
   }
 
   onSearchChange(query: string): void { 
-    if (!query || query.trim() === '') {
-      this.listTrainings = [...this.allTrainings];
-    } else {
-      this.listTrainings = this.allTrainings.filter(training =>
-        training.name.toLowerCase().includes(query.toLowerCase()) ||
-        training.description.toLowerCase().includes(query.toLowerCase())
-      );
-    }
+    this.searchQuery = query;
+    this.onFilter(this.searchQuery, this.maxPrice);
   }
   
   isSortedAsc: boolean = true;
@@ -82,12 +78,17 @@ export class TrainingComponent implements OnInit {
   }
 
   onMaxPriceChange(maxPrice: number): void {
-    if (maxPrice <= 0) {
-      this.listTrainings = [...this.allTrainings];
-    } else {
-      this.listTrainings = this.allTrainings.filter(training =>
-        training.price <= maxPrice
-      );
-    }
+    this.maxPrice = maxPrice;
+    this.onFilter(this.searchQuery, this.maxPrice);
+  }
+
+  onFilter(query: string, maxPrice: number): void {
+    this.listTrainings = this.allTrainings.filter(training => {
+      const matchesQuery = !query || query.trim() === '' ||
+        training.name.toLowerCase().includes(query.toLowerCase()) ||
+        training.description.toLowerCase().includes(query.toLowerCase());
+      const matchesPrice = maxPrice <= 0 || training.price <= maxPrice;
+      return matchesQuery && matchesPrice;
+    });
   }
 }
