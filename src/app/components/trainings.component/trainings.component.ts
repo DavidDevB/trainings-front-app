@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Training } from '../../models/training.model';
 import { CartService } from '../../services/cart.service';
 import { SearchbarComponent } from '../searchbar.component/searchbar.component';
 import { MaxPriceComponent } from "../max-price.component/max-price.component";
+import { ApiService } from '../../services/api-service';
 
 @Component({
   selector: 'app-trainings',
@@ -16,7 +17,7 @@ export class TrainingComponent implements OnInit {
   allTrainings: Training[] = [];
   maxPrice: number = 0;
   searchQuery: string = '';
-  constructor(public cartService: CartService) {}
+  constructor(public cartService: CartService, private apiService: ApiService, private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     this.displayTrainings();
@@ -24,16 +25,15 @@ export class TrainingComponent implements OnInit {
   }
 
   displayTrainings() {
-    this.allTrainings = [
-      { id: 1, name: 'Java', category: 'Backend', description: 'Formation Java SE 9 sur 5 jours', price: 1500, quantity: 1 },
-      { id: 2, name: 'DotNet', category: 'Programming', description: 'Formation DotNet 3 jours', price: 1000, quantity: 1 },
-      { id: 3, name: 'Python', category: 'Backend', description: 'Formation Python/Django 5 jours', price: 1500, quantity: 1 },
-      { id: 4, name: 'Angular', category: 'Frontend', description: 'Formation Angular 4 jours', price: 1200, quantity: 1 },
-      { id: 5, name: 'React', category: 'Frontend', description: 'Formation React 4 jours', price: 1200, quantity: 1 },
-      { id: 6, name: 'Vue.js', category: 'Frontend', description: 'Formation Vue.js 4 jours', price: 1200, quantity: 1 },
-      { id: 7, name: 'Node.js', category: 'Web Development', description: 'Formation Node.js 5 jours', price: 1500, quantity: 1 },
-    ];
-    this.listTrainings = [...this.allTrainings];
+    this.apiService.getTrainings().subscribe({
+      next : (data) => {
+        this.allTrainings = data;
+        this.listTrainings = [...this.allTrainings];
+        this.cdr.detectChanges();
+      },
+      error : (err) => console.error('Erreur lors de la récupération des formations : ', err),
+      complete : () => console.log('Récupération des formations terminée.')
+    });
   }
 
   onAddToCart(training: Training) {
@@ -41,7 +41,7 @@ export class TrainingComponent implements OnInit {
       alert('La quantité doit être au moins 1');
       training.quantity = 1;
       return;
-    }
+    } 
 
     const trainingToAdd = { 
     ...training, 
