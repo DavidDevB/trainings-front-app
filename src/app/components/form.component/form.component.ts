@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { CartService } from '../../services/cart.service';
-import { TrainingComponent } from '../trainings.component/trainings.component';
 import { OnInit } from '@angular/core';
 import { Training } from '../../models/training.model';
 import { FormsModule } from '@angular/forms';
