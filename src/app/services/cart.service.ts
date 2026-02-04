@@ -44,4 +44,16 @@ export class CartService {
     }
   }
 
+  submitForm(userData: { [key: string]: string }) {
+    const cartContent = this.getCartContent();
+    console.log('User Data:', userData);
+    console.log('Cart Content:', cartContent);
+    alert('✅ Formulaire soumis avec succès ! Consultez la console pour les détails.');
+    const orders = localStorage.getItem('orders') ? JSON.parse(localStorage.getItem('orders')!) : [];
+    orders.push({ userData, cartContent });
+    localStorage.setItem('orders', JSON.stringify(orders));
+    this.trainingsInCart = [];
+    localStorage.removeItem('cart');
+  }
+
 }
