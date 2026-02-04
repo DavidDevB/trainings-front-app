@@ -22,4 +22,11 @@ export class UserIcon {
   openModal() {
     $("#connectionModal").modal("show");
   }
+
+  logout() {
+    localStorage.removeItem('connectedUser');
+    this.isConnected = false;
+    this.dropDownVisible = false;
+    alert('✅ Déconnexion réussie.');
+  }
 }
