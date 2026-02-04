@@ -11,4 +11,8 @@ export class ApiService {
   public getTrainings() {
     return this.http.get<Training[]>('http://localhost:3000/trainings');
   }
+
+  public getUsers() {
+    return this.http.get<any[]>('http://localhost:3000/users');
+  }
 }
