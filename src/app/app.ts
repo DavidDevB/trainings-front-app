@@ -1,4 +1,4 @@
-import { Component, signal, Input } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { RouterOutlet, RouterLink} from '@angular/router';
 import { CartService } from './services/cart.service';
 import { UserIcon } from "./components/user-icon.component/user-icon.component";
@@ -17,7 +17,12 @@ export class App {
   isConnected: boolean = false;
   dropDownVisible: boolean = false;
 
-  constructor(public cartService: CartService) {}
+  constructor(public cartService: CartService) {
+    if (typeof localStorage !== 'undefined') {
+      const user = localStorage.getItem('connectedUser');
+      this.isConnected = !!user; 
+    }
+  }
 
   onConnectionSuccess(connected: boolean) {
     console.log('✅ App - Réception connexion:', connected);

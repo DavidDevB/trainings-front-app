@@ -50,6 +50,7 @@ export class ConnectionComponent {
     );
 
     if (user) {
+      localStorage.setItem('connectedUser', JSON.stringify(user));
       console.log('✅ Connexion réussie pour:', user.email);
       
       // ✅ Émettre vers App

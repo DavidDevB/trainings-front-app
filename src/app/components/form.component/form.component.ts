@@ -12,9 +12,8 @@ import { FormsModule } from '@angular/forms';
 })
 export class FormComponent implements OnInit{
   userData: { [key: string]: string } = {
-    name: '',
+    lastName: '',
     firstName: '',
-    address: '',
     phone: '',
     email: ''
   };
@@ -30,8 +29,7 @@ export class FormComponent implements OnInit{
     }
 
   onSubmit() {
-    console.log('Form submitted:', this.userData);
-    alert('Formulaire soumis avec succès !');
+    this.cartService.submitForm(this.userData);
   }
 
   
