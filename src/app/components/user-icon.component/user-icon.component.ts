@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+declare var $: any;
+
 
 @Component({
   selector: 'app-user-icon',
@@ -14,11 +16,11 @@ export class UserIcon {
 
   constructor() {}
 
-  
-
-  toggleModal() {
+  toggleDropDown() {
     this.modalVisible = !this.modalVisible;
-    console.log(this.isConnected);
-    console.log(this.modalVisible);
+  }
+
+  openModal() {
+    $("#connectionModal").modal("show");
   }
 }

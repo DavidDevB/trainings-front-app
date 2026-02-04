@@ -1,24 +1,24 @@
 
 <div class="dropdown">
-<button class="btn btn-link p-0 border-0" type="button" id="dropdownMenuButton" aria-haspopup="true" aria-expanded="false" (click)="toggleModal()" style="cursor: pointer;">
+<button class="btn btn-link p-0 border-0" type="button" id="dropdownMenuButton" aria-haspopup="true" aria-expanded="false" (click)="toggleDropDown()" style="cursor: pointer;">
     <img src="/assets/icon-user.png" alt="User Icon" class="icon-user" style="width: 50px; height: 50px;">
 </button>
 @if (modalVisible && isConnected) {
-<div class="dropdown-menu show" (click)="toggleModal()">
+<div class="dropdown-menu show">
   <i class="bi bi-box-arrow-right me-2"></i>
     <a class="dropdown-item"href="">Déconnexion</a>
     <div class="dropdown-divider"></div>
-      <a class="dropdown-item" (click)="toggleModal()" style="cursor: pointer;">
+      <a class="dropdown-item" (click)="toggleDropDown()" style="cursor: pointer;">
         Fermer
       </a>
   </div>
 }
 @else if (modalVisible && !isConnected) {
-<div class="dropdown-menu show" (click)="toggleModal()">
+<div class="dropdown-menu show">
   <i class="bi bi-box-arrow-in-right me-2"></i>
-        <a class="dropdown-item" href="#">Se connecter</a>
+        <a class="dropdown-item" (click)="openModal()" style="cursor: pointer;">Se connecter</a>
         <div class="dropdown-divider"></div>
-      <a class="dropdown-item" (click)="toggleModal()" style="cursor: pointer;">
+      <a class="dropdown-item" (click)="toggleDropDown()" style="cursor: pointer;">
         Fermer
       </a>
     </div>
