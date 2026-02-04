@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef, EventEmitter, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Training } from '../../models/training.model';
 import { CartService } from '../../services/cart.service';
@@ -17,6 +17,8 @@ export class TrainingComponent implements OnInit {
   allTrainings: Training[] = [];
   maxPrice: number = 0;
   searchQuery: string = '';
+  @Output() itemAddedToCart = new EventEmitter<number>();
+
   constructor(public cartService: CartService, private apiService: ApiService, private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
@@ -51,7 +53,7 @@ export class TrainingComponent implements OnInit {
     this.cartService.addToCart(trainingToAdd);
   
     training.quantity = 1;
-    
+    this.itemAddedToCart.emit(this.cartService.getCartContent().length);
   }
 
   onSearchChange(query: string): void { 
