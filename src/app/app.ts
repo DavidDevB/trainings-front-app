@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, afterNextRender } from '@angular/core';
 import { RouterOutlet, RouterLink} from '@angular/router';
 import { CartService } from './services/cart.service';
 import { UserIcon } from "./components/user-icon.component/user-icon.component";
@@ -16,12 +16,16 @@ export class App {
 
   isConnected: boolean = false;
   dropDownVisible: boolean = false;
+  cartItemCount: number = 0;
 
   constructor(public cartService: CartService) {
+    afterNextRender(() => {
     if (typeof localStorage !== 'undefined') {
       const user = localStorage.getItem('connectedUser');
       this.isConnected = !!user; 
     }
+    this.cartItemCount = this.cartService.getCartContent().length;
+    });
   }
 
   onConnectionSuccess(connected: boolean) {

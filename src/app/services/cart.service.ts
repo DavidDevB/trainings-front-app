@@ -35,7 +35,7 @@ export class CartService {
   removeFromCart(id: number) {
     const index = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')!).findIndex((item: Training) => item.id === id) : -1;
     if (index !== -1) {
-      this.trainingsInCart[index].quantity!--;
+      this.trainingsInCart[index].quantity!--; //VERIFIER POURQUOI UNDEFINED READING QUANTITY AU REMOVE FROM CART
       localStorage.setItem('cart', JSON.stringify(this.trainingsInCart));
       if (JSON.parse(localStorage.getItem('cart')!)[index].quantity === 0) {
         this.trainingsInCart.splice(index, 1);

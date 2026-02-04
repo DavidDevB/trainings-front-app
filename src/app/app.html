@@ -7,7 +7,7 @@
   </div>
   <div class="d-flex gap-2 align-items-center justify-content-center mb-4">
       <button class="btn btn-secondary shadow" routerLink="/trainings" >Formations</button>
-      <button class="btn btn-secondary shadow" routerLink="/cart" >Panier</button>
+      <button class="btn btn-secondary shadow d-flex align-items-center gap-2 cart" routerLink="/cart" ><img src="assets/icon-shopping-cart.png" alt="Cart Icon" class="icon-cart" style="width: 50px; height: auto; cursor: pointer;"  />Panier<span class="badge bg-danger text-white">{{cartItemCount}}</span></button>
       <button class="btn btn-secondary shadow" routerLink="/form" >Formulaire d'envoi</button>
   </div>
   @if (!isConnected) {
