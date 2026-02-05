@@ -4,10 +4,11 @@ import { CartService } from './services/cart.service';
 import { UserIcon } from "./components/user-icon.component/user-icon.component";
 import { ConnectionComponent } from "./components/connection.component/connection.component";
 import { FormsModule } from '@angular/forms';
+import { ManageTrainings } from './components/manage-trainings.component/manage-trainings.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, RouterLink, UserIcon, FormsModule, ConnectionComponent],
+  imports: [RouterOutlet, RouterLink, UserIcon, FormsModule, ConnectionComponent, ManageTrainings],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
@@ -17,6 +18,7 @@ export class App {
   isConnected: boolean = false;
   dropDownVisible: boolean = false;
   cartItemCount: number = 0;
+  isAdmin: boolean = false;
 
   constructor(public cartService: CartService) {
     afterNextRender(() => {
@@ -29,11 +31,14 @@ export class App {
   }
 
   onConnectionSuccess(connected: boolean) {
-    console.log('✅ App - Réception connexion:', connected);
     this.isConnected = connected;
   }
 
   onDropDownToggle(visible: boolean) {
     this.dropDownVisible = visible;
+  }
+
+  onAdminStatusChange(isAdmin: boolean) {
+    this.isAdmin = isAdmin;
   }
 }
