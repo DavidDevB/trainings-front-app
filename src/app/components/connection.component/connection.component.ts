@@ -2,6 +2,7 @@ import { Component, Output, EventEmitter } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 import { FormsModule } from '@angular/forms';
 import { CryptoService } from '../../services/crypto.service';
+declare var bootstrap: any;
 
 @Component({
   selector: 'app-connection',
@@ -20,14 +21,36 @@ export class ConnectionComponent {
   encryptedUser: string = '';
   decryptedUser: any = null;
   @Output() isAdmin = new EventEmitter<boolean>();
+  isLoading: boolean = false;
+  errorMessage: string = '';
+  private modalInstance: any;
 
   constructor(private apiService: ApiService,  private cryptoService: CryptoService) {}
+
+  ngOnInit() {
+    this.initModal();
+  }
+
+  // ✅ Initialiser la modale Bootstrap
+  initModal() {
+    setTimeout(() => {
+      const modalElement = document.getElementById('connectionModal');
+      if (modalElement) {
+        this.modalInstance = bootstrap.Modal.getOrCreateInstance(modalElement);
+      }
+    }, 100);
+  }
 
   fetchUsers = () => {
     return this.apiService.getUsers(); 
   }
 
   connect = () => {
+
+    this.errorMessage = '';
+
+    this.isLoading = true;
+
     if (!this.listUsers.length) {
       this.fetchUsers().subscribe({
       next : (data) => {
@@ -39,14 +62,18 @@ export class ConnectionComponent {
       complete : () => console.log('Récupération des utilisateurs terminée.')
     });
     }
+    else {
+      this.verifyUser();
+    }
   }
 
   verifyUser = () => {
 
-    if (!this.email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
-      alert('❌ Format d\'email invalide.');
-      return;
-    }
+      if (!this.email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+        alert('❌ Format d\'email invalide.');
+        this.isLoading = false;
+        return;
+      }
 
     const user = this.listUsers.find(u => 
       u.email === this.email && u.password === this.password
@@ -71,7 +98,24 @@ export class ConnectionComponent {
       this.password = '';
     } else {
       console.log('❌ Identifiants invalides');
-      alert('❌ Échec de la connexion. Vérifiez vos identifiants.');
+      
+      this.focusEmailField();
+
+      setTimeout(() => {
+        const emailInput = document.getElementById('emailInput') as HTMLInputElement;
+        if (emailInput) {
+          emailInput.select();
+        }
+      }, 100);
     }
+  }
+
+  focusEmailField() {
+    setTimeout(() => {
+      const emailInput = document.getElementById('emailInput') as HTMLInputElement;
+      if (emailInput) {
+        emailInput.focus();
+      }
+    }, 100);
   }
 }
