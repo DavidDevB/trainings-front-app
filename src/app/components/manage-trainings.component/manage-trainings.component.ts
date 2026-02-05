@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ApiService } from '../../services/api.service';
+import { CryptoService } from '../../services/crypto.service';
 
 @Component({
   selector: 'app-manage-trainings',
@@ -17,7 +18,7 @@ export class ManageTrainings {
   newTrainingDescription: string = '';
   newTrainingPrice: number | null = null;
 
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService, private cryptoService: CryptoService) { }
 
   ngOnInit() {
     this.fetchTrainings();
@@ -30,6 +31,20 @@ export class ManageTrainings {
   }
 
   deleteTraining(training: string) {
+
+    const encryptedUser = localStorage.getItem('connectedUser');
+    if (!encryptedUser) {
+      alert('⚠️ Vous devez être connecté pour supprimer une formation.');
+      return;
+    }
+     try {
+        const user = this.cryptoService.decrypt(encryptedUser);
+        const userData = JSON.parse(user);
+        if (!userData.roles.find((role: string) => role === 'ADMIN')) {
+          alert('⚠️ Accès réservé aux administrateurs pour supprimer une formation.');
+          return;
+        }
+
     this.apiService.getOneTraining(training).subscribe((data: any) => {
       if (confirm(`Êtes-vous sûr de vouloir supprimer la formation "${data.name}" ?`)) {
         this.apiService.deleteTraining(training).subscribe(() => {
@@ -38,9 +53,33 @@ export class ManageTrainings {
         });
       }
     });
+  } catch (error) {
+    console.error('❌ Erreur de déchiffrement:', error);
+    alert('⚠️ Erreur lors de la vérification des droits d\'administrateur.');
+    return;
+  }
   }
 
   addTraining() {
+
+    const encryptedUser = localStorage.getItem('connectedUser');
+    if (!encryptedUser) {
+      alert('⚠️ Vous devez être connecté pour supprimer une formation.');
+      return;
+    }
+     try {
+        const user = this.cryptoService.decrypt(encryptedUser);
+        const userData = JSON.parse(user);
+        if (!userData.roles.find((role: string) => role === 'ADMIN')) {
+          alert('⚠️ Accès réservé aux administrateurs pour ajouter une formation.');
+          return;
+        }
+      } catch (error) {
+        console.error('❌ Erreur de déchiffrement:', error);
+        alert('⚠️ Erreur lors de la vérification des droits d\'administrateur.');
+        return;
+      }
+
     if (!this.newTrainingName || !this.newTrainingCategory || !this.newTrainingDescription || this.newTrainingPrice === null) {
       alert('⚠️ Veuillez remplir tous les champs pour ajouter une formation.');
       return;
