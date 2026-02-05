@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { CryptoService } from '../../services/crypto.service';
 declare var $: any;
 
 @Component({
@@ -12,21 +13,33 @@ export class UserIcon {
 
   @Input() isConnected: boolean = false;
   @Input() dropDownVisible: boolean = false;
+  encryptedUser: string = '';
+  decryptedUser: any = null;
+  @Input() isAdmin: boolean = false;
 
-  constructor() {}
+  constructor(private cryptoService: CryptoService) { }
 
   toggleDropDown() {
     this.dropDownVisible = !this.dropDownVisible;
   }
 
   openModal() {
+    this.dropDownVisible = false;
     $("#connectionModal").modal("show");
   }
 
   logout() {
+    this.encryptedUser = localStorage.getItem('connectedUser') || '';
+    this.decryptedUser = this.cryptoService.decrypt(this.encryptedUser);
     localStorage.removeItem('connectedUser');
     this.isConnected = false;
+    this.isAdmin = false;
     this.dropDownVisible = false;
     alert('✅ Déconnexion réussie.');
+  }
+
+  manageModal() {
+    this.dropDownVisible = false;
+    $("#manageModal").modal("show");
   }
 }

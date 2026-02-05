@@ -1,7 +1,7 @@
 import { Component, Output, EventEmitter } from '@angular/core';
-import { ApiService } from '../../services/api-service';
+import { ApiService } from '../../services/api.service';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { CryptoService } from '../../services/crypto.service';
 
 @Component({
   selector: 'app-connection',
@@ -17,8 +17,11 @@ export class ConnectionComponent {
   listUsers : any[] = [];
   email: string = '';
   password: string = '';
+  encryptedUser: string = '';
+  decryptedUser: any = null;
+  @Output() isAdmin = new EventEmitter<boolean>();
 
-  constructor(private apiService: ApiService, private router: Router) {}
+  constructor(private apiService: ApiService,  private cryptoService: CryptoService) {}
 
   fetchUsers = () => {
     return this.apiService.getUsers(); 
@@ -32,8 +35,8 @@ export class ConnectionComponent {
         this.listUsers = [...this.allUsers];
         this.verifyUser();
       },
-      error : (err) => console.error('Erreur lors de la récupération des formations : ', err),
-      complete : () => console.log('Récupération des formations terminée.')
+      error : (err) => console.error('Erreur lors de la récupération des utilisateurs : ', err),
+      complete : () => console.log('Récupération des utilisateurs terminée.')
     });
     }
   }
@@ -50,13 +53,14 @@ export class ConnectionComponent {
     );
 
     if (user) {
-      localStorage.setItem('connectedUser', JSON.stringify(user));
+      this.encryptedUser = this.cryptoService.encrypt(JSON.stringify(user));
+      localStorage.setItem('connectedUser', this.encryptedUser);
       console.log('✅ Connexion réussie pour:', user.email);
-      
       // ✅ Émettre vers App
       this.isConnected.emit(true);
       this.dropDownVisible.emit(false);
-
+      const isAdmin = user.roles.includes('ADMIN');
+      this.isAdmin.emit(isAdmin);
       // ✅ Fermer la modal
       const modalElement = document.getElementById('connectionModal');
       const modal = (window as any).bootstrap.Modal.getInstance(modalElement);
