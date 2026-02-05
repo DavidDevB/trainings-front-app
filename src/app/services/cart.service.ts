@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, afterNextRender, signal, computed } from '@angular/core';
 import { Training } from '../models/training.model';
 
 @Injectable({
@@ -8,24 +8,43 @@ export class CartService {
 
   private trainingsInCart: Training[] = [];
   showCart: boolean = false;
+
+  private cartSignal = signal<Training[]>([]);
+  cartItemCount = computed(() => 
+    this.cartSignal().reduce((total, training) => total + training.quantity, 0)
+  );
   
   constructor() {
+    afterNextRender(() => {
+      this.loadCart();
+    });
+  }
 
+  private loadCart() {
+    const cart = localStorage.getItem('cart');
+    this.trainingsInCart = cart ? JSON.parse(cart) : [];
+    this.cartSignal.set([...this.trainingsInCart]);
+  }
+
+  private saveCart() {
+    localStorage.setItem('cart', JSON.stringify(this.trainingsInCart));
+    this.cartSignal.set([...this.trainingsInCart]); 
   }
 
   addToCart(training: Training) {
     const existingTraining = this.trainingsInCart.find(t => t.id === training.id);
     if (existingTraining) {
       existingTraining.quantity += training.quantity;
-      localStorage.setItem('cart', JSON.stringify(this.trainingsInCart));
+      this.saveCart();
     } else {
     this.trainingsInCart.push({...training});
-    localStorage.setItem('cart', JSON.stringify(this.trainingsInCart));
+    this.saveCart();
     }
+    this.saveCart();
   }
 
   getCartContent(): Training[] {
-    return localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')!) : [];
+    return this.trainingsInCart;
   }
 
   getTotalPrice(): number {
@@ -33,13 +52,12 @@ export class CartService {
   }
 
   removeFromCart(id: number) {
-    const index = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')!).findIndex((item: Training) => item.id === id) : -1;
+    const index = this.trainingsInCart.findIndex(item => item.id === id);
     if (index !== -1) {
-      this.trainingsInCart[index].quantity!--; //VERIFIER POURQUOI UNDEFINED READING QUANTITY AU REMOVE FROM CART
-      localStorage.setItem('cart', JSON.stringify(this.trainingsInCart));
-      if (JSON.parse(localStorage.getItem('cart')!)[index].quantity === 0) {
+      this.trainingsInCart[index].quantity!--; 
+      if (this.trainingsInCart[index].quantity === 0) {
         this.trainingsInCart.splice(index, 1);
-        localStorage.setItem('cart', JSON.stringify(this.trainingsInCart));
+        this.saveCart();
       }
     }
   }
@@ -54,6 +72,7 @@ export class CartService {
     localStorage.setItem('orders', JSON.stringify(orders));
     this.trainingsInCart = [];
     localStorage.removeItem('cart');
+    this.cartSignal.set([]);
   }
 
 }
