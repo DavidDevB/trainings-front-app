@@ -5,10 +5,12 @@ import { UserIcon } from "./components/user-icon.component/user-icon.component";
 import { ConnectionComponent } from "./components/connection.component/connection.component";
 import { FormsModule } from '@angular/forms';
 import { ManageTrainings } from './components/manage-trainings.component/manage-trainings.component';
+import {MatButtonModule} from '@angular/material/button';
+import { MatBadgeModule } from '@angular/material/badge';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, RouterLink, UserIcon, FormsModule, ConnectionComponent, ManageTrainings],
+  imports: [RouterOutlet, RouterLink, UserIcon, FormsModule, ConnectionComponent, ManageTrainings, MatButtonModule, MatBadgeModule],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

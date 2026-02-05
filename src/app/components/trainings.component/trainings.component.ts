@@ -5,10 +5,11 @@ import { CartService } from '../../services/cart.service';
 import { SearchbarComponent } from '../searchbar.component/searchbar.component';
 import { MaxPriceComponent } from "../max-price.component/max-price.component";
 import { ApiService } from '../../services/api.service';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-trainings',
-  imports: [FormsModule, SearchbarComponent, MaxPriceComponent],
+  imports: [FormsModule, SearchbarComponent, MaxPriceComponent, MatButtonModule],
   templateUrl: './trainings.component.html',
   styleUrl: './trainings.component.css',
 })

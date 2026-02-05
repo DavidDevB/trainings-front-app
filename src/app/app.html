@@ -6,9 +6,9 @@
     <app-user-icon class="flex-1" [isConnected]="isConnected" [isAdmin]="isAdmin"></app-user-icon>
   </div>
   <div class="d-flex gap-2 align-items-center justify-content-center mb-4">
-      <button class="btn btn-secondary shadow" routerLink="/trainings" >Formations</button>
-      <button class="btn btn-secondary shadow d-flex align-items-center gap-2 cart" routerLink="/cart" ><img src="assets/icon-shopping-cart.png" alt="Cart Icon" class="icon-cart" style="width: 50px; height: auto; cursor: pointer;"  />Panier<span class="badge bg-danger text-white">{{cartService.cartItemCount()}}</span></button>
-      <button class="btn btn-secondary shadow" routerLink="/form" >Formulaire d'envoi</button>
+      <button matButton="filled" class="shadow" routerLink="/trainings" >Formations</button>
+      <button matButton="filled" class="shadow d-flex align-items-center gap-2 cart" routerLink="/cart" ><img src="assets/icon-shopping-cart.png" alt="Cart Icon" class="icon-cart" style="width: 50px; height: auto; cursor: pointer;"  />Panier<span matBadge={{cartService.cartItemCount()}} matBadgePosition="after" matBadgeOverlap="false"></span></button>
+      <button matButton="filled" class="shadow" routerLink="/form" >Formulaire d'envoi</button>
   </div>
   @if (!isConnected) {
     <p class="text-center mb-4">Veuillez vous connecter pour accéder à toutes les fonctionnalités.</p>
