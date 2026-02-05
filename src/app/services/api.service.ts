@@ -12,7 +12,19 @@ export class ApiService {
     return this.http.get<Training[]>('http://localhost:3000/trainings');
   }
 
+  public getOneTraining(id: string) {
+    return this.http.get<Training>(`http://localhost:3000/trainings/${id}`);
+  }
+
   public getUsers() {
     return this.http.get<any[]>('http://localhost:3000/users');
+  }
+
+  public deleteTraining(id: string) {
+    return this.http.delete(`http://localhost:3000/trainings/${id}`);
+  }
+
+  public addTraining(training: Training) {
+    return this.http.post('http://localhost:3000/trainings', training);
   }
 }
