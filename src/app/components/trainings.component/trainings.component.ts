@@ -4,7 +4,7 @@ import { Training } from '../../models/training.model';
 import { CartService } from '../../services/cart.service';
 import { SearchbarComponent } from '../searchbar.component/searchbar.component';
 import { MaxPriceComponent } from "../max-price.component/max-price.component";
-import { ApiService } from '../../services/api-service';
+import { ApiService } from '../../services/api.service';
 
 @Component({
   selector: 'app-trainings',
