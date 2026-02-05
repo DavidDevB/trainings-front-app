@@ -3,7 +3,7 @@
       <h1 class="text-center my-4 flex-grow-1">
       Bienvenue sur la plateforme de formations en ligne
     </h1>
-    <app-user-icon class="flex-1" [isConnected]="isConnected"></app-user-icon>
+    <app-user-icon class="flex-1" [isConnected]="isConnected" [isAdmin]="isAdmin"></app-user-icon>
   </div>
   <div class="d-flex gap-2 align-items-center justify-content-center mb-4">
       <button class="btn btn-secondary shadow" routerLink="/trainings" >Formations</button>
@@ -17,5 +17,6 @@
     <router-outlet></router-outlet>
   </div>
   }
-  <app-connection (isConnected)="onConnectionSuccess($event)" (dropDownVisible)="onDropDownToggle($event)"></app-connection>
+  <app-connection (isConnected)="onConnectionSuccess($event)" (dropDownVisible)="onDropDownToggle($event)" (isAdmin)="onAdminStatusChange($event)"></app-connection>
+  <app-manage-trainings></app-manage-trainings>
 </main>

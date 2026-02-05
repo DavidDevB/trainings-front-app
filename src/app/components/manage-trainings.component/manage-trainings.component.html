@@ -1,0 +1,45 @@
+
+
+
+
+<div class="modal fade" id="manageModal" tabindex="-1" role="dialog" aria-labelledby="manageModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header d-flex justify-content-between align-items-center">
+        <h5 class="modal-title">Gérez les formations</h5>
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div>
+            <label for="email">Formations:</label>
+            <select id="trainings" name="trainings" class="form-control" [(ngModel)]="selectedTraining">
+                @for (training of trainings; track training.id) {
+                    <option [value]="training.id">{{ training.name }}</option>
+                }
+            </select>
+        </div>
+         <div class="mt-3">
+            <button class="btn btn-primary" (click)="deleteTraining(selectedTraining)">Supprimer</button>
+      </div>
+      <div class="modal-body mt-4">
+        <h5>Ajouter une formation</h5>
+        <div class="mb-3">
+            <label for="trainingName" class="form-label">Nom de la formation:</label>
+            <input type="text" id="trainingName" class="form-control" [(ngModel)]="newTrainingName">
+            <label for="trainingCategory" class="form-label mt-2">Catégorie:</label>
+            <input type="text" id="trainingCategory" class="form-control" [(ngModel)]="newTrainingCategory">
+            <label for="trainingDescription" class="form-label mt-2">Description:</label>
+            <textarea id="trainingDescription" class="form-control" [(ngModel)]="newTrainingDescription"></textarea>
+            <label for="trainingPrice" class="form-label mt-2">Prix:</label>
+            <input type="number" id="trainingPrice" class="form-control" [(ngModel)]="newTrainingPrice">
+        </div>
+        <button class="btn btn-success" (click)="addTraining()">Ajouter</button>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+      </div>
+    </div>
+  </div>
+</div>
