@@ -51,7 +51,7 @@ export class CartService {
     return this.trainingsInCart.reduce((total, training) => total + (training.price * training.quantity), 0);
   }
 
-  removeFromCart(id: number) {
+  removeFromCart(id: string) {
     const index = this.trainingsInCart.findIndex(item => item.id === id);
     if (index !== -1) {
       this.trainingsInCart[index].quantity!--; 

@@ -1,13 +1,13 @@
 
 export class Training {
-    id: number;
+    id: string;
     name: string;
     category: string;
     description: string;
     price: number;
     quantity: number;
 
-    constructor(id: number, name: string, category: string, description: string, price: number, quantity?: number) {
+    constructor(id: string, name: string, category: string, description: string, price: number, quantity?: number) {
         this.id = id;
         this.name = name;
         this.category = category;
