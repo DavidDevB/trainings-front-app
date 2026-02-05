@@ -65,32 +65,39 @@
       "quantity": 1
     }
   ],
-   "users":[
-      {
-          "email": "elbab@gmail.com",
-          "password": "1234",
-          "roles": ["ADMIN", "USER"]
-      },
-      {
-          "email": "hugo@gmail.com",
-          "password": "1234",
-          "roles": ["USER"]
-      }
-    ],
-    "customers": [
-      {
-        "id": "1",
-        "firstName": "John",
-        "lastName": "Doe",
-        "email": "john.doe@example.com",
-        "phone": "0756489876"
-      },
-      {
-        "id": "2",
-        "firstName": "Jane",
-        "lastName": "Smith",
-        "email": "jane.smith@example.com",
-        "phone": "0756124589"
-      }
-    ]
+  "users": [
+    {
+      "email": "elbab@gmail.com",
+      "password": "1234",
+      "roles": [
+        "ADMIN",
+        "USER"
+      ],
+      "id": "54b4"
+    },
+    {
+      "email": "hugo@gmail.com",
+      "password": "1234",
+      "roles": [
+        "USER"
+      ],
+      "id": "1129"
+    }
+  ],
+  "customers": [
+    {
+      "id": "1",
+      "firstName": "John",
+      "lastName": "Doe",
+      "email": "john.doe@example.com",
+      "phone": "0756489876"
+    },
+    {
+      "id": "2",
+      "firstName": "Jane",
+      "lastName": "Smith",
+      "email": "jane.smith@example.com",
+      "phone": "0756124589"
+    }
+  ]
 }
