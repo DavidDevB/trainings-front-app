@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ApiService } from '../../services/api.service';
 import { CryptoService } from '../../services/crypto.service';
+import { ThemeService } from '../../services/theme.service';
 
 @Component({
   selector: 'app-manage-trainings',
@@ -18,10 +19,14 @@ export class ManageTrainings {
   newTrainingDescription: string = '';
   newTrainingPrice: number | null = null;
 
-  constructor(private apiService: ApiService, private cryptoService: CryptoService) { }
+  constructor(private apiService: ApiService, private cryptoService: CryptoService, private themeService: ThemeService) { }
 
   ngOnInit() {
     this.fetchTrainings();
+  }
+
+  get theme() {
+    return this.themeService.theme();
   }
 
   fetchTrainings() {

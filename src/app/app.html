@@ -1,15 +1,21 @@
-<main class="d-flex flex-column justify-content-center align-items-center border rounded p-4 shadow-sm mx-3 my-4">
+
+@if (theme === "light") {
+<main class="light-theme d-flex flex-column justify-content-center align-items-center border rounded p-4 shadow-sm mx-3 my-4">
   <div class="d-flex flex-row align-items-center gap-4">
       <h1 class="text-center my-4 flex-grow-1">
       Bienvenue sur la plateforme de formations en ligne
     </h1>
-    <app-user-icon class="flex-1" [isConnected]="isConnected" [isAdmin]="isAdmin"></app-user-icon>
-    <app-theme class="flex-1"></app-theme>
+    <div class="d-flex gap-3">
+      <app-user-icon [isConnected]="isConnected" [isAdmin]="isAdmin"></app-user-icon>
+      <button matMiniFab="filled" class="theme-button" style= "width: 40px;">
+        <img src="assets/sun.png" alt="Light Mode Icon" style="width: 30px; height: auto; cursor: pointer;" (click)="toggleTheme()"/>
+      </button>
+    </div>
   </div>
-  <div class="d-flex gap-2 align-items-center justify-content-center mb-4">
-      <button matButton="filled" class="shadow" routerLink="/trainings" >Formations</button>
-      <button matButton="filled" class="shadow d-flex align-items-center gap-2 cart" routerLink="/cart" ><img src="assets/icon-shopping-cart.png" alt="Cart Icon" class="icon-cart" style="width: 50px; height: auto; cursor: pointer;"  />Panier<span matBadge={{cartService.cartItemCount()}} matBadgePosition="after" matBadgeOverlap="false"></span></button>
-      <button matButton="filled" class="shadow" routerLink="/form" >Formulaire d'envoi</button>
+  <div class="button-container d-flex gap-2 align-items-center justify-content-center mb-4" style="min-width: 600px;">
+      <button matButton="filled" class="shadow light" routerLink="/trainings" >Formations</button>
+      <button matButton="filled" class="shadow light d-flex align-items-center gap-2 cart" routerLink="/cart" ><img src="assets/icon-shopping-cart.png" alt="Cart Icon" class="icon-cart" style="width: 50px; height: auto; cursor: pointer;"  />Panier<span matBadge={{cartService.cartItemCount()}} matBadgePosition="after" matBadgeOverlap="false"></span></button>
+      <button matButton="filled" class="shadow light" routerLink="/form" >Formulaire d'envoi</button>
   </div>
   @if (!isConnected) {
     <p class="text-center mb-4">Veuillez vous connecter pour accéder à toutes les fonctionnalités.</p>
@@ -21,3 +27,32 @@
   <app-connection (isConnected)="onConnectionSuccess($event)" (dropDownVisible)="onDropDownToggle($event)" (isAdmin)="onAdminStatusChange($event)"></app-connection>
   <app-manage-trainings></app-manage-trainings>
 </main>
+} @else if (theme === "dark") {
+<main class="dark-theme d-flex flex-column justify-content-center align-items-center border rounded p-4 shadow-sm mx-3 my-4">
+  <div class="d-flex flex-row align-items-center gap-4">
+      <h1 class="text-center my-4 flex-grow-1">
+      Bienvenue sur la plateforme de formations en ligne
+    </h1>
+    <div class="d-flex gap-3">
+      <app-user-icon [isConnected]="isConnected" [isAdmin]="isAdmin"></app-user-icon>
+    <button matMiniFab="filled" class="theme-button" style= "width: 40px;">
+      <img src="assets/moon.png" alt="Dark Mode Icon" style="width: 30px; height: auto; cursor: pointer;" (click)="toggleTheme()"/>
+    </button>
+    </div>
+  </div>
+  <div class="button-container d-flex gap-2 align-items-center justify-content-center mb-4" style="min-width: 600px;">
+      <button matButton="filled" class="shadow dark" routerLink="/trainings" >Formations</button>
+      <button matButton="filled" class="shadow dark d-flex align-items-center gap-2 cart" routerLink="/cart" ><img src="assets/icon-shopping-cart.png" alt="Cart Icon" class="icon-cart" style="width: 50px; height: auto; cursor: pointer;"  />Panier<span matBadge={{cartService.cartItemCount()}} matBadgePosition="after" matBadgeOverlap="false"></span></button>
+      <button matButton="filled" class="shadow dark" routerLink="/form" >Formulaire d'envoi</button>
+  </div>
+  @if (!isConnected) {
+    <p class="text-center mb-4">Veuillez vous connecter pour accéder à toutes les fonctionnalités.</p>
+  } @else {
+    <div class="w-100 d-flex justify-content-center">
+    <router-outlet></router-outlet>
+  </div>
+  }
+  <app-connection (isConnected)="onConnectionSuccess($event)" (dropDownVisible)="onDropDownToggle($event)" (isAdmin)="onAdminStatusChange($event)"></app-connection>
+  <app-manage-trainings></app-manage-trainings>
+</main>
+}

@@ -9,16 +9,16 @@
     } @else if (cartService.getCartContent().length > 0 && cartService.showCart) {
         <ng-container >
             <div style="width: 700px; margin: auto;">
-                <table class="table table-striped table-hover shadow rounded bg-white border">
-                    <thead class="fs-5">Contenu du panier</thead>
+                <table class="table table-striped table-hover shadow rounded border">
+                    <thead class="{{theme}}-theme fs-5">Contenu du panier</thead>
                     <tbody>
                     @for (item of cartService.getCartContent(); track item.id) {
                         <tr valign="middle">
-                            <td>{{item.id}}</td>
-                            <td>{{item.name}}</td>
-                            <td>{{item.price * item.quantity}} €</td>
-                            <td>Quantité : {{item.quantity}}</td>
-                            <td><a class="delete-button" matButton="filled" (click)="cartService.removeFromCart(item.id)">Supprimer</a></td>
+                            <td class="{{theme}}-theme">{{item.id}}</td>
+                            <td class="{{theme}}-theme">{{item.name}}</td>
+                            <td class="{{theme}}-theme">{{item.price * item.quantity}} €</td>
+                            <td class="{{theme}}-theme">Quantité : {{item.quantity}}</td>
+                            <td class="{{theme}}-theme"><a class="delete-button" matButton="filled" (click)="cartService.removeFromCart(item.id)">Supprimer</a></td>
                         </tr>
                     }
                     </tbody>

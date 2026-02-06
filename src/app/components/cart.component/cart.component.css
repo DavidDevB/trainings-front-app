@@ -4,3 +4,13 @@
     background-color: #dc3545;
     color: white;
 }
+
+.dark-theme  {
+    background-color: #343a40;
+    color: white;
+}
+
+.light-theme {
+    background-color: #f8f9fa;
+    color: black;
+}

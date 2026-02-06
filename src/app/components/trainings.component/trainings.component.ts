@@ -6,6 +6,7 @@ import { SearchbarComponent } from '../searchbar.component/searchbar.component';
 import { MaxPriceComponent } from "../max-price.component/max-price.component";
 import { ApiService } from '../../services/api.service';
 import { MatButtonModule } from '@angular/material/button';
+import { ThemeService } from '../../services/theme.service';
 
 @Component({
   selector: 'app-trainings',
@@ -20,11 +21,15 @@ export class TrainingComponent implements OnInit {
   searchQuery: string = '';
   @Output() itemAddedToCart = new EventEmitter<number>();
 
-  constructor(public cartService: CartService, private apiService: ApiService, private cdr: ChangeDetectorRef) {}
+  constructor(public cartService: CartService, private apiService: ApiService, private cdr: ChangeDetectorRef, private themeService: ThemeService) {}
 
   ngOnInit(): void {
     this.displayTrainings();
     this.cartService.showCart = false;
+  }
+
+  get theme() {
+    return this.themeService.theme();
   }
 
   displayTrainings() {

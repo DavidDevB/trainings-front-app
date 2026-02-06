@@ -1,29 +1,29 @@
 
-<ng-container>
+<div>
     <div class="d-flex justify-content-center mb-3">
         <app-searchbar (searchChange)="onSearchChange($event)"></app-searchbar>
         <app-max-price (priceChange)="onMaxPriceChange($event)"></app-max-price>
     </div>
-    <table class="table table-striped table-hover shadow rounded mb-5 bg-white border" style="width: 1000px;">
-        <thead>
-            <tr>
+    <table class="table table-striped table-hover shadow mb-5 bg-white border" style="width: 1000px;">
+        <thead >
+            <tr >
                 <th>ID</th><th>NOM</th><th style="cursor: pointer;"(click)="orderByCategory()">CATEGORIE</th><th>DESCRIPTION</th><th>PRIX</th><th>QUANTITÉ</th><th>ACTION</th>
             </tr>
         </thead>
         <tbody>
         @for (training of listTrainings; track training.id) {
             <tr>
-                <td>{{training.id}}</td>
-                <td>{{training.name}}</td>
-                <td>{{training.category}}</td>
-                <td>{{training.description}}</td>
-                <td>{{training.price}}</td>
-                <td><input type="number" name="quantity" style="width: 60px" [(ngModel)]="training.quantity"/></td>
-                <td><a class="add-button" matButton="filled" (click)="onAddToCart(training)" ()>Ajouter au panier</a></td>
+                <td class="{{theme}}-theme">{{training.id}}</td>
+                <td class="{{theme}}-theme">{{training.name}}</td>
+                <td class="{{theme}}-theme">{{training.category}}</td>
+                <td class="{{theme}}-theme">{{training.description}}</td>
+                <td class="{{theme}}-theme">{{training.price}}</td>
+                <td class="{{theme}}-theme"><input type="number" name="quantity" style="width: 60px" [(ngModel)]="training.quantity"/></td>
+                <td class="{{theme}}-theme"><a class="add-button" matButton="filled" (click)="onAddToCart(training)" ()>Ajouter au panier</a></td>
             </tr>
         }
         </tbody>
     </table>
-</ng-container>
+</div>
     
 

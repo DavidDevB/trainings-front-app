@@ -1,0 +1,11 @@
+
+.light-theme {
+  background-color: #f8f9fa;
+  color: rgb(0, 0, 0);
+}
+
+body.dark-theme {
+  background-color: #333333;
+  color: rgb(255, 255, 255);
+}
+

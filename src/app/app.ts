@@ -1,4 +1,4 @@
-import { Component, signal, afterNextRender } from '@angular/core';
+import { Component, signal, afterNextRender, Input } from '@angular/core';
 import { RouterOutlet, RouterLink} from '@angular/router';
 import { CartService } from './services/cart.service';
 import { UserIcon } from "./components/user-icon.component/user-icon.component";
@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { ManageTrainings } from './components/manage-trainings.component/manage-trainings.component';
 import {MatButtonModule} from '@angular/material/button';
 import { MatBadgeModule } from '@angular/material/badge';
+import { ThemeService } from './services/theme.service';
 
 @Component({
   selector: 'app-root',
@@ -22,7 +23,7 @@ export class App {
   cartItemCount: number = 0;
   isAdmin: boolean = false;
 
-  constructor(public cartService: CartService) {
+  constructor(public cartService: CartService, private themeService: ThemeService) {
     afterNextRender(() => {
     if (typeof localStorage !== 'undefined') {
       const user = localStorage.getItem('connectedUser');
@@ -30,6 +31,14 @@ export class App {
     }
     this.cartItemCount = this.cartService.getCartContent().length;
     });
+  }
+
+  toggleTheme() {
+    this.themeService.toggleTheme();
+  }
+
+  get theme() {
+    return this.themeService.theme();
   }
 
   onConnectionSuccess(connected: boolean) {

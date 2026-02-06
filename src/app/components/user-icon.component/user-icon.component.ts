@@ -15,7 +15,7 @@ export class UserIcon {
   @Input() dropDownVisible: boolean = false;
   encryptedUser: string = '';
   decryptedUser: any = null;
-  @Input() isAdmin: boolean = false;
+  @Input() isAdmin: string | null = null;
 
   constructor(private cryptoService: CryptoService) { }
 
@@ -33,7 +33,7 @@ export class UserIcon {
     this.decryptedUser = this.cryptoService.decrypt(this.encryptedUser);
     localStorage.removeItem('connectedUser');
     this.isConnected = false;
-    this.isAdmin = false;
+    this.isAdmin = null;
     this.dropDownVisible = false;
     alert('✅ Déconnexion réussie.');
   }
