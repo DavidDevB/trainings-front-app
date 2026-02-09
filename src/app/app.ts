@@ -21,7 +21,7 @@ export class App {
   isConnected: boolean = false;
   dropDownVisible: boolean = false;
   cartItemCount: number = 0;
-  isAdmin: boolean = false;
+  isAdmin: string | null = null;
 
   constructor(public cartService: CartService, private themeService: ThemeService) {
     afterNextRender(() => {
@@ -49,7 +49,7 @@ export class App {
     this.dropDownVisible = visible;
   }
 
-  onAdminStatusChange(isAdmin: boolean) {
+  onAdminStatusChange(isAdmin: string | null) {
     this.isAdmin = isAdmin;
   }
 }

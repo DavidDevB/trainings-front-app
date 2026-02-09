@@ -20,7 +20,7 @@ export class ConnectionComponent {
   password: string = '';
   encryptedUser: string = '';
   decryptedUser: any = null;
-  @Output() isAdmin = new EventEmitter<boolean>();
+  @Output() isAdmin = new EventEmitter<string>();
   isLoading: boolean = false;
   errorMessage: string = '';
   private modalInstance: any;
