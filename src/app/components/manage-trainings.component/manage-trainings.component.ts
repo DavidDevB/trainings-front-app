@@ -3,10 +3,12 @@ import { FormsModule } from '@angular/forms';
 import { ApiService } from '../../services/api.service';
 import { CryptoService } from '../../services/crypto.service';
 import { ThemeService } from '../../services/theme.service';
+import { MatAnchor } from "@angular/material/button";
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-manage-trainings',
-  imports: [FormsModule],
+  imports: [FormsModule, MatAnchor],
   templateUrl: './manage-trainings.component.html',
   styleUrl: './manage-trainings.component.css',
 })

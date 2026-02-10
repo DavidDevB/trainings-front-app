@@ -21,8 +21,8 @@
             </select>
         </div>
          <div class="mt-3">
-            <button class="btn btn-primary" (click)="deleteTraining(selectedTraining)">Supprimer</button>
-      </div>
+            <button class="delete-button"matButton="filled" (click)="deleteTraining(selectedTraining)">Supprimer</button>
+        </div>
       <div class="modal-body mt-4">
         <h5>Ajouter une formation</h5>
         <div class="mb-3">
@@ -35,7 +35,7 @@
             <label for="trainingPrice" class="form-label mt-2">Prix:</label>
             <input type="number" id="trainingPrice" class="form-control" [(ngModel)]="newTrainingPrice">
         </div>
-        <button class="btn btn-success" (click)="addTraining()">Ajouter</button>
+        <button class="add-button"matButton="filled" (click)="addTraining()">Ajouter</button>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>

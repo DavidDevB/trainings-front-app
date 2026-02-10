@@ -9,3 +9,7 @@ body.dark-theme {
   color: rgb(255, 255, 255);
 }
 
+.delete-button {
+  background-color: #dc3545;
+  color: white;
+}

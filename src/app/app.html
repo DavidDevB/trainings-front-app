@@ -1,10 +1,10 @@
 
 @if (theme === "light") {
-<main class="light-theme d-flex flex-column justify-content-center align-items-center border rounded p-4 shadow-sm mx-3 my-4">
+<main class="light-theme d-flex flex-column justify-content-center align-items-center border rounded p-10 shadow-sm mx-3 my-4 h-100">
   <div class="d-flex flex-row align-items-center gap-4">
       <h1 class="text-center my-4 flex-grow-1">
       Bienvenue sur la plateforme de formations en ligne
-    </h1>
+      </h1>
     <div class="d-flex gap-3">
       <app-user-icon [isConnected]="isConnected" [isAdmin]="isAdmin"></app-user-icon>
       <button matMiniFab="filled" class="theme-button" style= "width: 40px;">
@@ -28,7 +28,7 @@
   <app-manage-trainings></app-manage-trainings>
 </main>
 } @else if (theme === "dark") {
-<main class="dark-theme d-flex flex-column justify-content-center align-items-center border rounded p-4 shadow-sm mx-3 my-4">
+<main class="dark-theme d-flex flex-column justify-content-center align-items-center border rounded p-10 shadow-sm mx-3 my-4 h-100">
   <div class="d-flex flex-row align-items-center gap-4">
       <h1 class="text-center my-4 flex-grow-1">
       Bienvenue sur la plateforme de formations en ligne

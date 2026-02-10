@@ -63,6 +63,14 @@
       "description": "Formation Spring 6 jours",
       "price": 1300,
       "quantity": 1
+    },
+    {
+      "id": "9",
+      "name": "Django",
+      "category": "Backend",
+      "description": "blabla",
+      "price": 1800,
+      "quantity": 1
     }
   ],
   "users": [
