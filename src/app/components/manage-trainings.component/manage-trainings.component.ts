@@ -4,7 +4,6 @@ import { ApiService } from '../../services/api.service';
 import { CryptoService } from '../../services/crypto.service';
 import { ThemeService } from '../../services/theme.service';
 import { MatAnchor } from "@angular/material/button";
-import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-manage-trainings',
@@ -41,28 +40,28 @@ export class ManageTrainings {
 
     const encryptedUser = localStorage.getItem('connectedUser');
     if (!encryptedUser) {
-      alert('⚠️ Vous devez être connecté pour supprimer une formation.');
+      alert('Vous devez être connecté pour supprimer une formation.');
       return;
     }
      try {
         const user = this.cryptoService.decrypt(encryptedUser);
         const userData = JSON.parse(user);
         if (!userData.roles.find((role: string) => role === 'ADMIN')) {
-          alert('⚠️ Accès réservé aux administrateurs pour supprimer une formation.');
+          alert('Accès réservé aux administrateurs pour supprimer une formation.');
           return;
         }
 
     this.apiService.getOneTraining(training).subscribe((data: any) => {
       if (confirm(`Êtes-vous sûr de vouloir supprimer la formation "${data.name}" ?`)) {
         this.apiService.deleteTraining(training).subscribe(() => {
-          alert('✅ Formation supprimée avec succès.');
+          alert('Formation supprimée avec succès.');
           this.fetchTrainings();
         });
       }
     });
   } catch (error) {
-    console.error('❌ Erreur de déchiffrement:', error);
-    alert('⚠️ Erreur lors de la vérification des droits d\'administrateur.');
+    console.error('Erreur de déchiffrement:', error);
+    alert('Erreur lors de la vérification des droits d\'administrateur.');
     return;
   }
   }
@@ -71,30 +70,30 @@ export class ManageTrainings {
 
     const encryptedUser = localStorage.getItem('connectedUser');
     if (!encryptedUser) {
-      alert('⚠️ Vous devez être connecté pour supprimer une formation.');
+      alert('Vous devez être connecté pour supprimer une formation.');
       return;
     }
      try {
         const user = this.cryptoService.decrypt(encryptedUser);
         const userData = JSON.parse(user);
         if (!userData.roles.find((role: string) => role === 'ADMIN')) {
-          alert('⚠️ Accès réservé aux administrateurs pour ajouter une formation.');
+          alert('Accès réservé aux administrateurs pour ajouter une formation.');
           return;
         }
       } catch (error) {
-        console.error('❌ Erreur de déchiffrement:', error);
-        alert('⚠️ Erreur lors de la vérification des droits d\'administrateur.');
+        console.error('Erreur de déchiffrement:', error);
+        alert('Erreur lors de la vérification des droits d\'administrateur.');
         return;
       }
 
     if (!this.newTrainingName || !this.newTrainingCategory || !this.newTrainingDescription || this.newTrainingPrice === null) {
-      alert('⚠️ Veuillez remplir tous les champs pour ajouter une formation.');
+      alert('Veuillez remplir tous les champs pour ajouter une formation.');
       return;
     } else if (this.newTrainingPrice < 0) {
-      alert('⚠️ Le prix ne peut pas être négatif.');
+      alert('Le prix ne peut pas être négatif.');
       return;
     } else if (this.trainings.some(t => t.name === this.newTrainingName)) {
-      alert('⚠️ Une formation avec ce nom existe déjà. Veuillez choisir un nom différent.');
+      alert('Une formation avec ce nom existe déjà. Veuillez choisir un nom différent.');
       return;
     }
 
@@ -110,7 +109,7 @@ export class ManageTrainings {
     };
 
     this.apiService.addTraining(newTraining).subscribe(() => {
-      alert('✅ Formation ajoutée avec succès.');
+      alert('Formation ajoutée avec succès.');
       this.newTrainingName = '';
       this.newTrainingCategory = '';
       this.newTrainingDescription = '';

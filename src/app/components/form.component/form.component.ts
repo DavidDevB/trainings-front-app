@@ -28,10 +28,4 @@ export class FormComponent implements OnInit{
   ngOnInit() {
       this.cartService.showCart = false;
     }
-
-  onSubmit() {
-    this.cartService.submitForm(this.userData);
-  }
-
-  
 }

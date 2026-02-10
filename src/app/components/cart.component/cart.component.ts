@@ -24,4 +24,11 @@ export class CartComponent implements OnInit {
     return this.themeService.theme();
   }
 
+  checkout() {
+    if (this.cartService.getCartContent().length === 0) {
+      alert('Votre panier est vide. Veuillez ajouter des formations avant de passer la commande.');
+      return;
+    }
+    this.cartService.checkout(this.cartService.getCartContent());
+  }
 }

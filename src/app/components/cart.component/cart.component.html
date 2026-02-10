@@ -25,7 +25,10 @@
                 </table>
             </div>  
         </ng-container>
-        <div>
-            <strong>Total : {{cartService.getTotalPrice()}} €</strong>
+        <div class="d-flex row justify-content-between">
+            <div>
+                <strong>Total : {{cartService.getTotalPrice()}} €</strong>
+            </div>
+            <button class="btn btn-success" (click)="checkout()">Passer la commande</button>
         </div>
     }

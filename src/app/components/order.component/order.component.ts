@@ -25,6 +25,7 @@ export class OrderComponent implements OnInit {
 
   loadOrders() {
     this.apiService.getOrders().subscribe((data: any[]) => {
+      console.log('Orders fetched from API:', data);
       this.orders = data.map(order => ({
         id: order.id,
         userId: order.userId,

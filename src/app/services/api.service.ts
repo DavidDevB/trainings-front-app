@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Training } from '../models/training.model';
 import { HttpClient } from '@angular/common/http';
+import { Order } from '../models/order.model';
 
 @Injectable({
   providedIn: 'root',
@@ -32,7 +33,7 @@ export class ApiService {
     return this.http.get<any[]>('http://localhost:3000/orders');
   }
 
-  public addOrder(order: any) {
+  public addOrder(order: Order) {
     return this.http.post('http://localhost:3000/orders', order);
   }
 }

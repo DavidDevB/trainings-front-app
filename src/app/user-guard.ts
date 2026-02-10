@@ -11,8 +11,8 @@ export const authGuard: CanActivateFn = () => {
   const encryptedUser = localStorage.getItem('connectedUser');
 
   if (!encryptedUser) {
-    console.log('❌ Accès refusé : utilisateur non connecté');
-    alert('⚠️ Vous devez être connecté pour accéder à cette page.');
+    console.log('Accès refusé : utilisateur non connecté');
+    alert('Vous devez être connecté pour accéder à cette page.');
     router.navigate(['/']);
     return false;
   }
@@ -20,19 +20,19 @@ export const authGuard: CanActivateFn = () => {
   try {
     const user = cryptoService.decrypt(encryptedUser);
     const userData = JSON.parse(user);
-    console.log('🔐 Utilisateur déchiffré:', userData);
+    console.log('Utilisateur déchiffré:', userData);
 
     if (userData.roles.find((role: string) => role === 'USER')) {
-      console.log('✅ Accès autorisé pour user:', userData.email);
+      console.log('Accès autorisé pour user:', userData.email);
       return true;
     } else {
-      console.log('❌ Accès refusé : utilisateur non user');
-      alert('⚠️ Accès réservé aux utilisateurs.');
+      console.log('Accès refusé : utilisateur non user');
+      alert('Accès réservé aux utilisateurs.');
       router.navigate(['/']);
       return false;
     }
   } catch (error) {
-    console.error('❌ Erreur de déchiffrement:', error);
+    console.error('Erreur de déchiffrement:', error);
     localStorage.removeItem('connectedUser');
     router.navigate(['/']);
     return false;

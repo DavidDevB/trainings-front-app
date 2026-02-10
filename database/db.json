@@ -112,10 +112,82 @@
     {
       "id": "1",
       "customerId": "1",
-      "trainings": [{"id": "1", "quantity": 1}, {"id": "3", "quantity": 1}],
+      "trainings": [
+        {
+          "id": "1",
+          "quantity": 1
+        },
+        {
+          "id": "3",
+          "quantity": 1
+        }
+      ],
       "totalPrice": 3000,
       "orderDate": "2024-06-01T10:00:00Z"
+    },
+    {
+      "id": "1770733452479",
+      "userId": "currentUserId",
+      "trainings": [
+        {
+          "id": "3",
+          "quantity": 1
+        },
+        {
+          "id": "2",
+          "quantity": 1
+        },
+        {
+          "id": "1",
+          "quantity": 1
+        },
+        {
+          "id": "4",
+          "quantity": 1
+        }
+      ],
+      "totalPrice": 5200,
+      "orderDate": "2026-02-10T14:24:12.479Z"
+    },
+    {
+      "id": "1770733607311",
+      "userId": "currentUserId",
+      "trainings": [
+        {
+          "id": "2",
+          "quantity": 1
+        },
+        {
+          "id": "1",
+          "quantity": 1
+        },
+        {
+          "id": "9",
+          "quantity": 1
+        }
+      ],
+      "totalPrice": 4300,
+      "orderDate": "2026-02-10T14:26:47.311Z"
+    },
+    {
+      "id": "1770733999829",
+      "userId": "currentUserId",
+      "trainings": [
+        {
+          "id": "3",
+          "quantity": 1
+        },
+        {
+          "id": "4",
+          "quantity": 1
+        },
+        {
+          "id": "2",
+          "quantity": 1
+        }
+      ],
+      "totalPrice": 3700,
+      "orderDate": "2026-02-10T14:33:19.829Z"
     }
   ]
-  
 }
