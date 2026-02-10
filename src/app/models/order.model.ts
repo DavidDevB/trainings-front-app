@@ -1,9 +1,9 @@
-
+import { Training } from './training.model';
 
 export class Order {
     id: string;
     userId: string;
-    trainings: [];
+    trainings: Training[];
     totalPrice: number;
     orderDate: Date;
 

@@ -26,6 +26,7 @@
   }
   <app-connection (isConnected)="onConnectionSuccess($event)" (dropDownVisible)="onDropDownToggle($event)" (isAdmin)="onAdminStatusChange($event)"></app-connection>
   <app-manage-trainings></app-manage-trainings>
+  <app-order></app-order>
 </main>
 } @else if (theme === "dark") {
 <main class="dark-theme d-flex flex-column justify-content-center align-items-center border rounded p-10 shadow-sm mx-3 my-4 h-100">

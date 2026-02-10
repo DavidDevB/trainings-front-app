@@ -42,4 +42,9 @@ export class UserIcon {
     this.dropDownVisible = false;
     $("#manageModal").modal("show");
   }
+
+  openOrders() {
+    this.dropDownVisible = false;
+    $("#ordersModal").modal("show");
+  }
 }

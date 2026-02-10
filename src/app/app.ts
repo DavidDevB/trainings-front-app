@@ -8,10 +8,11 @@ import { ManageTrainings } from './components/manage-trainings.component/manage-
 import {MatButtonModule} from '@angular/material/button';
 import { MatBadgeModule } from '@angular/material/badge';
 import { ThemeService } from './services/theme.service';
+import { OrderComponent } from './components/order.component/order.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, RouterLink, UserIcon, FormsModule, ConnectionComponent, ManageTrainings, MatButtonModule, MatBadgeModule],
+  imports: [RouterOutlet, RouterLink, UserIcon, FormsModule, ConnectionComponent, ManageTrainings, MatButtonModule, MatBadgeModule, OrderComponent],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

@@ -27,4 +27,8 @@ export class ApiService {
   public addTraining(training: Training) {
     return this.http.post('http://localhost:3000/trainings', training);
   }
+
+  public getOrders() {
+    return this.http.get<any[]>('http://localhost:3000/orders');
+  }
 }
