@@ -31,4 +31,8 @@ export class ApiService {
   public getOrders() {
     return this.http.get<any[]>('http://localhost:3000/orders');
   }
+
+  public addOrder(order: any) {
+    return this.http.post('http://localhost:3000/orders', order);
+  }
 }
