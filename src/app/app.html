@@ -7,8 +7,8 @@
       </h1>
     <div class="d-flex gap-3">
       <app-user-icon [isConnected]="isConnected" [isAdmin]="isAdmin"></app-user-icon>
-      <button matMiniFab="filled" class="theme-button" style= "width: 40px;">
-        <img src="assets/sun.png" alt="Light Mode Icon" style="width: 30px; height: auto; cursor: pointer;" (click)="toggleTheme()"/>
+      <button matMiniFab="filled" class="theme-button" style= "width: 40px;" (click)="toggleTheme()">
+        <img src="assets/sun.png" alt="Light Mode Icon" style="width: 30px; height: auto; cursor: pointer;" />
       </button>
     </div>
   </div>
@@ -35,8 +35,8 @@
     </h1>
     <div class="d-flex gap-3">
       <app-user-icon [isConnected]="isConnected" [isAdmin]="isAdmin"></app-user-icon>
-    <button matMiniFab="filled" class="theme-button" style= "width: 40px;">
-      <img src="assets/moon.png" alt="Dark Mode Icon" style="width: 30px; height: auto; cursor: pointer;" (click)="toggleTheme()"/>
+    <button matMiniFab="filled" class="theme-button" style= "width: 40px;" (click)="toggleTheme()">
+      <img src="assets/moon.png" alt="Dark Mode Icon" style="width: 30px; height: auto; cursor: pointer;" />
     </button>
     </div>
   </div>
